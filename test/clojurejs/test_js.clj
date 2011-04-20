@@ -263,3 +263,6 @@
     (expect [foo (times 5)]
       (is (= 123 (js-eval (new (do (foo) Number) (do (foo) 123)))))
       (is (= 123 (js-eval (do (foo) (new (do (foo) Number) (do (foo) 123)))))))))
+
+(deftest this-syntax-test
+  (is (= (js @a) "this.a")))
