@@ -548,6 +548,10 @@
   (binding [*quoted* true]
     (emit expr)))
 
+(defmethod emit "deref" [[_ value]]
+  (print "this.")
+  (emit value))
+
 (defmethod emit :default [expr]
   (if (and (coll? expr) (not *quoted*) (macro? (first expr)))
     (emit-macro-expansion expr)
