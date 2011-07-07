@@ -555,6 +555,9 @@
   (print "this.")
   (emit value))
 
+(defmethod emit "unquote" [[_ value]]
+  (emit (eval value)))
+
 (defmethod emit :default [expr]
   (if (and (coll? expr) (not *quoted*) (macro? (first expr)))
     (emit-macro-expansion expr)
